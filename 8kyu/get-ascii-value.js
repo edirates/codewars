@@ -18,3 +18,8 @@ console.log(getASCII('!')); // 33
 // Test.assertEquals(getASCII('A'),65)
 // Test.assertEquals(getASCII(' '),32)
 // Test.assertEquals(getASCII('!'),33)
+
+// BEST SOLUTION
+// function getASCII(c){
+//     const getASCII = c => c.charCodeAt(0);
+// }

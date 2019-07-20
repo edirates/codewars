@@ -23,6 +23,6 @@ console.log(squareSum([0, 3, 4, 5])); // 50
 // Test.assertEquals(squareSum([0, 3, 4, 5]), 50)
 
 // BEST SOLUTION
-function squareSum(numbers){
-    return numbers.reduce(function(sum, n){ return (n*n) + sum; }, 0)
-}
+// function squareSum(numbers){
+//     return numbers.reduce(function(sum, n){ return (n*n) + sum; }, 0)
+// }

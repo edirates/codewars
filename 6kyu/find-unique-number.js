@@ -16,9 +16,11 @@ Find The Unique
 
 function findUniq(arr) {
     // ================= Shortest Way ====================
+    // If the first array is the unique number then return it immediately
     if (arr[0] !== arr[1] && arr[0] !== arr[2]){
       return arr[0];
     }
+    // If not then do looping to find the unique number and return it immediately
     for (var i = 0; i < arr.length; i++) {
         if (arr[i] !== arr[0]) {
             return arr[i];
