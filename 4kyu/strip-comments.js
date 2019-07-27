@@ -20,27 +20,30 @@ var result = solution("apples, pears # and bananas\ngrapes\nbananas !apples", ["
 */
 
 function solution(input, markers) {
-    var array = input.split("");
-    var flag = false;
-    for (var i = 0; i < array.length; i++) {
+    // Use flag for record the strings that are not be stripped away
+    var flag = true;
+    // Declare result to contain the recorded strings
+    var result = "";
+    // Do Looping to record all the strings that are not comment in markers
+    for (var i = 0; i < input.length; i++) {
+        // Check in array markers
         for (var j = 0; j < markers.length; j++) {
-            if (array[i] === markers[j]) {
-                flag = true;
-            }
+            // If current string found in array markers that turn off the flag in order to stop recording
+            if (input[i] === markers[j]) {
+                flag = false;
+            } 
         }
-        if (array[i] === "\n") {
-            flag = false;
+        // If current string is "\n" then turn on flag in order to start recording again
+        if (input[i] === "\n") {
+            flag = true;
         }
+        // When flag is true then keep recording
         if (flag) {
-            if (array[i] === " ") {
-                array.splice(i,1);
-                i--;
-            }
-            array.splice(i,1);
-            i--;
+            result = result + input[i];
         }
     }
-    return array.join("");
+    // Display result with no whitespace
+    return result.trim();
 };
 
 console.log(solution("apples, plums % and bananas\npears\noranges !applesauce", ["%", "!"])); // "apples, plums\npears\noranges"
@@ -55,3 +58,27 @@ console.log(solution("Q @b\nu\ne -e f g", ["@", "-"])); // "Q\nu\ne"
 
 // checkComments("apples, plums % and bananas\npears\noranges !applesauce", ["%", "!"], "apples, plums\npears\noranges")
 // checkComments("Q @b\nu\ne -e f g", ["@", "-"], "Q\nu\ne")
+
+// BEST SOLUTION
+// function solution(input, markers){
+//     return input.replace(new RegExp("\\s?[" + markers.join("") + "].*(\\n)?", "gi"), "$1");
+// }
+// function solution(input, markers) {
+//     return input.split('\n').map(
+//         line => markers.reduce(
+//         (line, marker) => line.split(marker)[0].trim(), line
+//         )
+//     ).join('\n')
+//     }
+
+//     RegExp.escape = function (s) {
+//     return s.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
+// }
+  
+// function solution (input, markers){
+//     markers_regexp = markers.map(function(marker) {
+//         return RegExp.escape(marker);
+//     }).join("|");
+//     pattern = new RegExp("\\s*(" + markers_regexp + ").*?\$", "gm");
+//     return input.replace(pattern, "");
+// }
